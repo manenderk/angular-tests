@@ -1,0 +1,17 @@
+#navigation-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#navigation-list li {
+  display: inline-block;
+  margin: 8px 12px;
+}
+#navigation-list li a,
+#navigation-list li a:hover,
+#navigation-list li a:visited,
+#navigation-list li a:focus {
+  color: #fff;
+  text-decoration: none;
+}
