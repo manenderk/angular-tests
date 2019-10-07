@@ -1,1 +1,8 @@
-<app-table [page]='1' [itemsPerPage]='10' [numPages]='1' [data]="tableData"></app-table>
+<app-table
+  [page]="1"
+  [itemsPerPage]="10"
+  [numPages]="1"
+  [data]="tableData"
+  [columns]="columnSchema"
+  [config]="tableConfig"
+></app-table>
