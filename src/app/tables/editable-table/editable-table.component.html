@@ -1,0 +1,29 @@
+<div *ngIf="tableData">
+  <div class="input-group mb-3">
+    <input class="form-control" [(ngModel)]="globalFilterInputKeyword" (keyup)="filterTableWithGlobalSearch()">
+    <div class="input-group-append">
+      <button class="btn btn-primary" (click)="clearGlobalFilterVariable()">X</button>
+    </div>
+  </div>
+  <table class="table table-bordered">
+    <tr>
+      <th *ngFor="let column of columnSchema">
+        {{column.label}}
+      </th>
+    </tr>
+    <tr *ngIf="isFieldFilteringEnabled">
+      <td *ngFor="let column of columnSchema">
+        <span *ngIf="column.filter === true">
+          <input class="form-control" [(ngModel)]="fieldFilterInputKeywords[column.name]" (keyup)=filterTableWithFieldSearch()>
+        </span>
+      </td>
+    </tr>
+    <tr *ngFor="let row of tableData | tableGlobalFilter:globalFilterInputKeyword">
+      <td *ngFor="let column of columnSchema">
+        <span *ngIf="row[column.name]">
+          {{row[column.name]}}
+        </span>
+      </td>
+    </tr>
+  </table>
+</div>
