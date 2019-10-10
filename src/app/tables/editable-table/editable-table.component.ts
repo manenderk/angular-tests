@@ -9,13 +9,18 @@ const enum SortDirection { 'asc', 'desc' }
 })
 export class EditableTableComponent implements OnInit {
 
+  errorMessage = '';
   isFieldFilteringEnabled = false;
   globalFilterInputKeyword = '';
   fieldFilterInputKeywords: {};
   displayableColumns: any[];
   defaultDisplayableColumns: string[];
+  currentPageNumber = 1;
+  totalPages: number;
+  rowsToShow: any[];
 
   @Input() tableSchema: {
+    pageSize?: number,
     sort?: {
       sortField: string;
       sortOrder: SortDirection;
@@ -54,7 +59,8 @@ export class EditableTableComponent implements OnInit {
     this.randomizeDates();
     this.setDisplayableColumns();
     if (this.displayableColumns.length === 0) {
-      throw new Error('No displayabale column');
+      this.errorMessage = 'No displayable column in table';
+      this.tableData = null;
       return;
     }
     this.setDefaultDisplayableColumns();
@@ -65,6 +71,8 @@ export class EditableTableComponent implements OnInit {
       this.fieldFilterInputKeywords = {};
       this.setFieldFilterVariables();
     }
+    this.setNumberOfPages();
+    this.setPagination();
   }
 
   isAnyColumnWithFieldFilter() {
@@ -173,6 +181,23 @@ export class EditableTableComponent implements OnInit {
     this.setDisplayableColumns();
     this.changeDetector.detectChanges();
   }
+
+  setPagination() {
+    this.rowsToShow = this.tableData.slice(
+      (this.currentPageNumber - 1) * this.tableSchema.pageSize,
+      (this.currentPageNumber * this.tableSchema.pageSize)
+    );
+  }
+
+  setNumberOfPages() {
+    this.totalPages = Math.ceil(this.tableData.length / this.tableSchema.pageSize);
+  }
+
+  changeCurrentPage(pageNumber) {
+    this.currentPageNumber = pageNumber;
+    this.setPagination();
+  }
+
 
 
 }

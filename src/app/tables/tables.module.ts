@@ -7,11 +7,12 @@ import { BootstrapModule } from '../bootstrap/bootstrap.module';
 import { TableContainerComponent } from './table-container/table-container.component';
 import { EditableTableComponent } from './editable-table/editable-table.component';
 import { FilterTablePipe } from './filter-table.pipe';
+import { NumberToArrayPipe } from './number-to-array.pipe';
 
 
 
 @NgModule({
-  declarations: [TableComponent, TableContainerComponent, EditableTableComponent, FilterTablePipe],
+  declarations: [TableComponent, TableContainerComponent, EditableTableComponent, FilterTablePipe, NumberToArrayPipe],
   imports: [
     CommonModule,
     SharedModule,

@@ -1,4 +1,5 @@
 export const TableSchema = {
+  pageSize: 9,
   columnSchema: [
     {
       name: 'name',
