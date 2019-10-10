@@ -7,11 +7,12 @@ import { BootstrapModule } from '../bootstrap/bootstrap.module';
 import { TableContainerComponent } from './table-container/table-container.component';
 import { EditableTableComponent } from './editable-table/editable-table.component';
 import { TableGlobalFilterPipe } from './table-global-filter.pipe';
+import { FilterTablePipe } from './filter-table.pipe';
 
 
 
 @NgModule({
-  declarations: [TableComponent, TableContainerComponent, EditableTableComponent, TableGlobalFilterPipe],
+  declarations: [TableComponent, TableContainerComponent, EditableTableComponent, TableGlobalFilterPipe, FilterTablePipe],
   imports: [
     CommonModule,
     SharedModule,

@@ -14,11 +14,14 @@
     <tr *ngIf="isFieldFilteringEnabled">
       <td *ngFor="let column of columnSchema">
         <span *ngIf="column.filter === true">
-          <input class="form-control" [(ngModel)]="fieldFilterInputKeywords[column.name]" (keyup)=filterTableWithFieldSearch()>
+          <input class="form-control" [(ngModel)]="fieldFilterInputKeywords[column.name]"
+            (keyup)=filterTableWithFieldSearch()>
         </span>
       </td>
     </tr>
-    <tr *ngFor="let row of tableData | tableGlobalFilter:globalFilterInputKeyword">
+    <tr
+      *ngFor="let row of tableData | filterTable: {globalFilterKeyword: globalFilterInputKeyword, fieldFilterKeywords:
+      fieldFilterInputKeywords}">
       <td *ngFor="let column of columnSchema">
         <span *ngIf="row[column.name]">
           {{row[column.name]}}

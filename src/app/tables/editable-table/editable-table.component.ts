@@ -1,18 +1,15 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-editable-table',
   templateUrl: './editable-table.component.html',
-  styleUrls: ['./editable-table.component.css']
+  styleUrls: ['./editable-table.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditableTableComponent implements OnInit {
-
   isFieldFilteringEnabled = false;
   globalFilterInputKeyword = '';
-  fieldFilterInputKeywords: {
-    filterFor: string,
-    filterKeyword: string;
-  }[];
+  fieldFilterInputKeywords: {};
 
   // tslint:disable-next-line: no-input-rename
   @Input('column-schema') columnSchema: any[] = [
@@ -84,13 +81,14 @@ export class EditableTableComponent implements OnInit {
       return;
     }
     this.randomizeDates();
-    this.isThereAnyColumnWithFilter();
+    this.isAnyColumnWithFieldFilter();
     if (this.isFieldFilteringEnabled) {
-      this.fieldFilterInputKeywords = [];
+      this.fieldFilterInputKeywords = {};
+      this.setFieldFilterVariables();
     }
   }
 
-  isThereAnyColumnWithFilter() {
+  isAnyColumnWithFieldFilter() {
     if (this.columnSchema.find(column => column.filter === true)) {
       this.isFieldFilteringEnabled = true;
     }
@@ -105,6 +103,14 @@ export class EditableTableComponent implements OnInit {
   }
 
   filterTableWithFieldSearch() {
-    console.log(this.fieldFilterInputKeywords);
+    // console.log(this.fieldFilterInputKeywords);
+  }
+
+  setFieldFilterVariables() {
+    this.columnSchema.forEach(column => {
+      if (column.filter && column.filter === true) {
+        this.fieldFilterInputKeywords[column.name] = '';
+      }
+    });
   }
 }
