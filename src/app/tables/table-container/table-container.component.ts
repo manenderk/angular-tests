@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TableData } from '../table-data';
-
+import { TableSchema } from '../table-schema';
 
 @Component({
   selector: 'app-table-container',
@@ -12,6 +12,11 @@ export class TableContainerComponent implements OnInit {
   columnSchema = [];
   tableData = [];
   tableConfig: any;
+
+  editableTable: {
+    tableSchema: any,
+    tableData: any
+  };
   constructor() { }
 
   ngOnInit() {
@@ -48,6 +53,11 @@ export class TableContainerComponent implements OnInit {
       sorting: { columns: this.columnSchema },
       filtering: { filterString: '' },
       className: ['table-striped', 'table-bordered']
+    };
+
+    this.editableTable = {
+      tableData: TableData,
+      tableSchema: TableSchema
     };
   }
 

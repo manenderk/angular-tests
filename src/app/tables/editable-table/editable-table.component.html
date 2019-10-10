@@ -1,16 +1,22 @@
-<div *ngIf="tableData">
+<div *ngIf="tableData && tableSchema && tableSchema.columnSchema">
   <div class="columns-to-display table-section">
     <h5>Columns to Display</h5>
-    <div class="form-check form-check-inline" *ngFor="let column of columnSchema">
-      <input class="form-check-input" type="checkbox" id="{{'inlineCheckbox' + column.name}}"
-        (change)="manageTableDisplay(column.name, $event.target.checked)" [checked]="column.display && column.display === true">
+    <div class="form-check form-check-inline" *ngFor="let column of tableSchema.columnSchema">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="{{'inlineCheckbox' + column.name}}"
+        (change)="manageTableDisplay(column.name, $event.target.checked)"
+        [checked]="column.display && column.display === true"
+        [disabled]="defaultDisplayableColumns.includes(column.name)"
+      >
       <label class="form-check-label" for="{{'inlineCheckbox' + column.name}}">{{column.label}}</label>
     </div>
   </div>
   <div class="global-search input-group table-section">
     <input class="form-control" [(ngModel)]="globalFilterInputKeyword" (keyup)="filterTableWithGlobalSearch()">
     <div class="input-group-append">
-      <button class="btn btn-primary" (click)="clearGlobalFilterVariable($event)">X</button>
+      <button class="btn btn-primary" (click)="clearGlobalFilterVariable()"><i class="fa fa-times"></i></button>
     </div>
   </div>
   <div class="table-section">
@@ -23,10 +29,13 @@
       </tr>
       <tr *ngIf="isFieldFilteringEnabled">
         <td *ngFor="let column of displayableColumns">
-          <span *ngIf="column.filter === true">
+          <div *ngIf="column.filter === true" class="input-group">
             <input class="form-control" [(ngModel)]="fieldFilterInputKeywords[column.name]"
               (keyup)=filterTableWithFieldSearch()>
-          </span>
+            <div class="input-group-append">
+              <button class="btn btn-primary" (click)="clearFieldFilterVariable(column.name)"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
         </td>
       </tr>
       <tr *ngFor="let row of tableData | filterTable: {globalFilterKeyword: globalFilterInputKeyword, fieldFilterKeywords:
