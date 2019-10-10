@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 
 const enum SortDirection { 'asc', 'desc' }
 @Component({
@@ -7,41 +7,43 @@ const enum SortDirection { 'asc', 'desc' }
   styleUrls: ['./editable-table.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-
 export class EditableTableComponent implements OnInit {
   isFieldFilteringEnabled = false;
   globalFilterInputKeyword = '';
   fieldFilterInputKeywords: {};
+  displayableColumns: any[];
 
   // tslint:disable-next-line: no-input-rename
   @Input('column-schema') columnSchema: any[] = [
     {
       name: 'id',
       label: 'ID',
+      display: true,
       filter: true
     },
     {
       name: 'firstName',
       label: 'First Name',
+      display: true,
       filter: true
     },
     {
       name: 'createdAt',
       label: 'Added On',
-      filter: true
+      display: true,
     },
     {
       name: 'updatedAt',
-      label: 'Modified On'
+      label: 'Updated On'
     }
   ];
 
   // tslint:disable-next-line: no-input-rename
   @Input('table-schema') tableSchema: {
-    sort: {
-      sortField: string,
-      sortOrder: SortDirection
-    }
+    sort?: {
+      sortField: string;
+      sortOrder: SortDirection;
+    };
   };
 
   tableData = [
@@ -72,7 +74,7 @@ export class EditableTableComponent implements OnInit {
     { id: 10, firstName: 'Vivek', updatedAt: new Date(), createdAt: new Date() }
   ];
 
-  constructor() {}
+  constructor(private changeDetector: ChangeDetectorRef) {}
 
   randomDate(start: Date, end: Date) {
     return new Date(
@@ -93,15 +95,14 @@ export class EditableTableComponent implements OnInit {
     if (!this.tableData || !this.columnSchema) {
       return;
     }
-    if (!this.tableSchema) {
-      this.tableSchema = {
-        sort: {
-          sortField: this.columnSchema[0].name,
-          sortOrder: SortDirection.asc
-        }
-      };
-    }
+
     this.randomizeDates();
+    this.setDisplayableColumns();
+    if (this.displayableColumns.length === 0) {
+      throw new Error('No displayabale column');
+      return;
+    }
+    this.setSortConfig();
     this.isAnyColumnWithFieldFilter();
     this.sortTable();
     if (this.isFieldFilteringEnabled) {
@@ -136,24 +137,53 @@ export class EditableTableComponent implements OnInit {
     });
   }
 
+  setDisplayableColumns() {
+    this.displayableColumns = this.columnSchema.filter(
+      column => column.display && column.display === true
+    );
+  }
+
+  setSortConfig() {
+    if (!this.tableSchema) {
+      this.tableSchema = {
+        sort: {
+          sortField: this.displayableColumns[0].name,
+          sortOrder: SortDirection.asc
+        }
+      };
+    }
+  }
+
   sortTable() {
-    const sortOrder = this.tableSchema.sort.sortOrder === SortDirection.asc ? 'asc' : 'desc';
+    const sortOrder =
+      this.tableSchema.sort.sortOrder === SortDirection.asc ? 'asc' : 'desc';
     const sortByField = this.tableSchema.sort.sortField;
 
     if (sortOrder === 'asc') {
       this.tableData.sort((a, b) => {
-        return a[sortByField] < b[sortByField] ? -1 : a[sortByField] > b[sortByField] ? 1 : 0;
+        return a[sortByField] < b[sortByField]
+          ? -1
+          : a[sortByField] > b[sortByField]
+          ? 1
+          : 0;
       });
     } else {
       this.tableData.sort((a, b) => {
-        return a[sortByField] < b[sortByField] ? 1 : a[sortByField] > b[sortByField] ? -1 : 0;
+        return a[sortByField] < b[sortByField]
+          ? 1
+          : a[sortByField] > b[sortByField]
+          ? -1
+          : 0;
       });
     }
   }
 
   changeSort(fieldName) {
     if (this.tableSchema.sort.sortField === fieldName) {
-      this.tableSchema.sort.sortOrder = this.tableSchema.sort.sortOrder === SortDirection.asc ? SortDirection.desc : SortDirection.asc;
+      this.tableSchema.sort.sortOrder =
+        this.tableSchema.sort.sortOrder === SortDirection.asc
+          ? SortDirection.desc
+          : SortDirection.asc;
     } else {
       this.tableSchema.sort.sortField = fieldName;
       this.tableSchema.sort.sortOrder = SortDirection.asc;
@@ -161,7 +191,16 @@ export class EditableTableComponent implements OnInit {
     this.sortTable();
   }
 
-  manageTableDisplay(data) {
-    console.log(data);
+  manageTableDisplay(columnName: string, checked: boolean) {
+    this.columnSchema.map(column => {
+      if (column.name === columnName) {
+        column.display = checked;
+      }
+      return column;
+    });
+    this.setDisplayableColumns();
+    this.changeDetector.detectChanges();
   }
+
+
 }
