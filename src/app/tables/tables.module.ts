@@ -6,13 +6,12 @@ import { Ng2TableModule } from 'ng2-table/ng2-table';
 import { BootstrapModule } from '../bootstrap/bootstrap.module';
 import { TableContainerComponent } from './table-container/table-container.component';
 import { EditableTableComponent } from './editable-table/editable-table.component';
-import { TableGlobalFilterPipe } from './table-global-filter.pipe';
 import { FilterTablePipe } from './filter-table.pipe';
 
 
 
 @NgModule({
-  declarations: [TableComponent, TableContainerComponent, EditableTableComponent, TableGlobalFilterPipe, FilterTablePipe],
+  declarations: [TableComponent, TableContainerComponent, EditableTableComponent, FilterTablePipe],
   imports: [
     CommonModule,
     SharedModule,

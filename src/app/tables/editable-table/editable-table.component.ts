@@ -1,11 +1,13 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
 
+const enum SortDirection { 'asc', 'desc' }
 @Component({
   selector: 'app-editable-table',
   templateUrl: './editable-table.component.html',
   styleUrls: ['./editable-table.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class EditableTableComponent implements OnInit {
   isFieldFilteringEnabled = false;
   globalFilterInputKeyword = '';
@@ -20,7 +22,8 @@ export class EditableTableComponent implements OnInit {
     },
     {
       name: 'firstName',
-      label: 'First Name'
+      label: 'First Name',
+      filter: true
     },
     {
       name: 'createdAt',
@@ -32,6 +35,14 @@ export class EditableTableComponent implements OnInit {
       label: 'Modified On'
     }
   ];
+
+  // tslint:disable-next-line: no-input-rename
+  @Input('table-schema') tableSchema: {
+    sort: {
+      sortField: string,
+      sortOrder: SortDirection
+    }
+  };
 
   tableData = [
     {
@@ -68,6 +79,7 @@ export class EditableTableComponent implements OnInit {
       start.getTime() + Math.random() * (end.getTime() - start.getTime())
     );
   }
+
   randomizeDates() {
     this.tableData.map(row => {
       const temp = row;
@@ -76,12 +88,22 @@ export class EditableTableComponent implements OnInit {
       return temp;
     });
   }
+
   ngOnInit() {
     if (!this.tableData || !this.columnSchema) {
       return;
     }
+    if (!this.tableSchema) {
+      this.tableSchema = {
+        sort: {
+          sortField: this.columnSchema[0].name,
+          sortOrder: SortDirection.asc
+        }
+      };
+    }
     this.randomizeDates();
     this.isAnyColumnWithFieldFilter();
+    this.sortTable();
     if (this.isFieldFilteringEnabled) {
       this.fieldFilterInputKeywords = {};
       this.setFieldFilterVariables();
@@ -112,5 +134,34 @@ export class EditableTableComponent implements OnInit {
         this.fieldFilterInputKeywords[column.name] = '';
       }
     });
+  }
+
+  sortTable() {
+    const sortOrder = this.tableSchema.sort.sortOrder === SortDirection.asc ? 'asc' : 'desc';
+    const sortByField = this.tableSchema.sort.sortField;
+
+    if (sortOrder === 'asc') {
+      this.tableData.sort((a, b) => {
+        return a[sortByField] < b[sortByField] ? -1 : a[sortByField] > b[sortByField] ? 1 : 0;
+      });
+    } else {
+      this.tableData.sort((a, b) => {
+        return a[sortByField] < b[sortByField] ? 1 : a[sortByField] > b[sortByField] ? -1 : 0;
+      });
+    }
+  }
+
+  changeSort(fieldName) {
+    if (this.tableSchema.sort.sortField === fieldName) {
+      this.tableSchema.sort.sortOrder = this.tableSchema.sort.sortOrder === SortDirection.asc ? SortDirection.desc : SortDirection.asc;
+    } else {
+      this.tableSchema.sort.sortField = fieldName;
+      this.tableSchema.sort.sortOrder = SortDirection.asc;
+    }
+    this.sortTable();
+  }
+
+  manageTableDisplay(data) {
+    console.log(data);
   }
 }

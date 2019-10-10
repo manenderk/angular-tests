@@ -1,32 +1,42 @@
 <div *ngIf="tableData">
-  <div class="input-group mb-3">
-    <input class="form-control" [(ngModel)]="globalFilterInputKeyword" (keyup)="filterTableWithGlobalSearch()">
-    <div class="input-group-append">
-      <button class="btn btn-primary" (click)="clearGlobalFilterVariable()">X</button>
+  <div class="columns-to-display table-section">
+    <h5>Columns to Display</h5>
+    <div class="form-check form-check-inline" *ngFor="let column of columnSchema">
+      <input class="form-check-input" type="checkbox" id="{{'inlineCheckbox' + column.name}}"
+        (change)="manageTableDisplay()">
+      <label class="form-check-label" for="{{'inlineCheckbox' + column.name}}">{{column.label}}</label>
     </div>
   </div>
-  <table class="table table-bordered">
-    <tr>
-      <th *ngFor="let column of columnSchema">
-        {{column.label}}
-      </th>
-    </tr>
-    <tr *ngIf="isFieldFilteringEnabled">
-      <td *ngFor="let column of columnSchema">
-        <span *ngIf="column.filter === true">
-          <input class="form-control" [(ngModel)]="fieldFilterInputKeywords[column.name]"
-            (keyup)=filterTableWithFieldSearch()>
-        </span>
-      </td>
-    </tr>
-    <tr
-      *ngFor="let row of tableData | filterTable: {globalFilterKeyword: globalFilterInputKeyword, fieldFilterKeywords:
+  <div class="global-search input-group table-section">
+    <input class="form-control" [(ngModel)]="globalFilterInputKeyword" (keyup)="filterTableWithGlobalSearch()">
+    <div class="input-group-append">
+      <button class="btn btn-primary" (click)="clearGlobalFilterVariable($event)">X</button>
+    </div>
+  </div>
+  <div class="table-section">
+    <table class="table table-bordered">
+      <tr>
+        <th *ngFor="let column of columnSchema" (click)="changeSort(column.name)">
+          {{column.label}} &nbsp; <span *ngIf="column.name === tableSchema.sort.sortField"
+            [class]="tableSchema.sort.sortOrder === 0 ? 'fa fa-caret-up' : 'fa fa-caret-down'"></span>
+        </th>
+      </tr>
+      <tr *ngIf="isFieldFilteringEnabled">
+        <td *ngFor="let column of columnSchema">
+          <span *ngIf="column.filter === true">
+            <input class="form-control" [(ngModel)]="fieldFilterInputKeywords[column.name]"
+              (keyup)=filterTableWithFieldSearch()>
+          </span>
+        </td>
+      </tr>
+      <tr *ngFor="let row of tableData | filterTable: {globalFilterKeyword: globalFilterInputKeyword, fieldFilterKeywords:
       fieldFilterInputKeywords}">
-      <td *ngFor="let column of columnSchema">
-        <span *ngIf="row[column.name]">
-          {{row[column.name]}}
-        </span>
-      </td>
-    </tr>
-  </table>
+        <td *ngFor="let column of columnSchema">
+          <span *ngIf="row[column.name]">
+            {{row[column.name]}}
+          </span>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
