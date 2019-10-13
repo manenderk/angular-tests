@@ -8,16 +8,30 @@ import { TableContainerComponent } from './table-container/table-container.compo
 import { EditableTableComponent } from './editable-table/editable-table.component';
 import { FilterTablePipe } from './filter-table.pipe';
 import { NumberToArrayPipe } from './number-to-array.pipe';
+import { EditableTable2Component } from './editable-table2/editable-table2.component';
+import { PaginateRowsPipe } from './paginate-rows.pipe';
 
 
 
 @NgModule({
-  declarations: [TableComponent, TableContainerComponent, EditableTableComponent, FilterTablePipe, NumberToArrayPipe],
+  declarations: [
+    TableComponent,
+    TableContainerComponent,
+    EditableTableComponent,
+    FilterTablePipe,
+    NumberToArrayPipe,
+    EditableTable2Component,
+    PaginateRowsPipe
+  ],
   imports: [
     CommonModule,
     SharedModule,
     Ng2TableModule,
     BootstrapModule
+  ],
+  providers: [
+    FilterTablePipe,
+    PaginateRowsPipe
   ]
 })
 export class TablesModule { }

@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { PaginateRowsPipe } from '../paginate-rows.pipe';
+import { FilterTablePipe } from '../filter-table.pipe';
 
 const enum SortDirection { 'asc', 'desc' }
 @Component({
@@ -15,9 +17,9 @@ export class EditableTableComponent implements OnInit {
   fieldFilterInputKeywords: {};
   displayableColumns: any[];
   defaultDisplayableColumns: string[];
-  currentPageNumber = 1;
+  currentPageNumber: number;
   totalPages: number;
-  rowsToShow: any[];
+
 
   @Input() tableSchema: {
     pageSize?: number,
@@ -35,7 +37,7 @@ export class EditableTableComponent implements OnInit {
 
   @Input() tableData: any[];
 
-  constructor(private changeDetector: ChangeDetectorRef) {}
+  constructor(private changeDetector: ChangeDetectorRef, private filterTable: FilterTablePipe) {}
 
   randomDate(start: Date, end: Date) {
     return new Date(
@@ -64,6 +66,10 @@ export class EditableTableComponent implements OnInit {
       return;
     }
     this.setDefaultDisplayableColumns();
+
+    this.setPaginationVariables();
+    console.log(this.tableSchema.pageSize);
+
     this.setSortConfig();
     this.isAnyColumnWithFieldFilter();
     this.sortTable();
@@ -71,8 +77,6 @@ export class EditableTableComponent implements OnInit {
       this.fieldFilterInputKeywords = {};
       this.setFieldFilterVariables();
     }
-    this.setNumberOfPages();
-    this.setPagination();
   }
 
   isAnyColumnWithFieldFilter() {
@@ -82,6 +86,7 @@ export class EditableTableComponent implements OnInit {
   }
 
   filterTableWithGlobalSearch() {
+    this.setTotalPages();
     // console.log(this.globalFilterInputKeyword);
   }
 
@@ -90,6 +95,7 @@ export class EditableTableComponent implements OnInit {
   }
 
   filterTableWithFieldSearch() {
+    this.setTotalPages();
     // console.log(this.fieldFilterInputKeywords);
   }
 
@@ -182,22 +188,28 @@ export class EditableTableComponent implements OnInit {
     this.changeDetector.detectChanges();
   }
 
-  setPagination() {
-    this.rowsToShow = this.tableData.slice(
-      (this.currentPageNumber - 1) * this.tableSchema.pageSize,
-      (this.currentPageNumber * this.tableSchema.pageSize)
-    );
-  }
-
-  setNumberOfPages() {
+  setPaginationVariables() {
+    if (!this.tableSchema.pageSize) {
+      this.tableSchema.pageSize = 6;
+    }
+    this.currentPageNumber = 1;
     this.totalPages = Math.ceil(this.tableData.length / this.tableSchema.pageSize);
   }
 
-  changeCurrentPage(pageNumber) {
+  setCurrentPageNumber(pageNumber) {
     this.currentPageNumber = pageNumber;
-    this.setPagination();
   }
 
-
-
+  setTotalPages() {
+    const filterObj = {
+      globalFilterKeyword: this.globalFilterInputKeyword,
+      fieldFilterKeywords: this.fieldFilterInputKeywords
+    };
+    this.totalPages = Math.ceil(
+      this.filterTable.transform(
+        this.tableData,
+        filterObj
+      ).length / this.tableSchema.pageSize
+    );
+  }
 }
