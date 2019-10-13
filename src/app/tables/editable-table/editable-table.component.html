@@ -13,8 +13,8 @@
       <label class="form-check-label" for="{{'inlineCheckbox' + column.name}}">{{column.label}}</label>
     </div>
   </div>
-  <div class="global-search input-group table-section">
-    <input class="form-control" [(ngModel)]="globalFilterInputKeyword" (keyup)="filterTableWithGlobalSearch()">
+  <div class="global-search input-group table-section" *ngIf="isGlobalFilterEnabled">
+    <input class="form-control" [(ngModel)]="globalFilterInputKeyword" (keyup)="applyFilter()">
     <div class="input-group-append">
       <button class="btn btn-primary" (click)="clearGlobalFilterVariable()"><i class="fa fa-times"></i></button>
     </div>
@@ -31,7 +31,7 @@
         <td *ngFor="let column of displayableColumns">
           <div *ngIf="column.filter === true" class="input-group">
             <input class="form-control" [(ngModel)]="fieldFilterInputKeywords[column.name]"
-              (keyup)=filterTableWithFieldSearch()>
+              (keyup)="applyFilter()">
             <div class="input-group-append">
               <button class="btn btn-primary" (click)="clearFieldFilterVariable(column.name)"><i class="fa fa-times"></i></button>
             </div>

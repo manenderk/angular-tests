@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { PaginateRowsPipe } from '../paginate-rows.pipe';
 import { FilterTablePipe } from '../filter-table.pipe';
 
 const enum SortDirection { 'asc', 'desc' }
+
 @Component({
   selector: 'app-editable-table',
   templateUrl: './editable-table.component.html',
@@ -12,6 +12,7 @@ const enum SortDirection { 'asc', 'desc' }
 export class EditableTableComponent implements OnInit {
 
   errorMessage = '';
+  isGlobalFilterEnabled = false;
   isFieldFilteringEnabled = false;
   globalFilterInputKeyword = '';
   fieldFilterInputKeywords: {};
@@ -19,9 +20,12 @@ export class EditableTableComponent implements OnInit {
   defaultDisplayableColumns: string[];
   currentPageNumber: number;
   totalPages: number;
+  private defaultPageSize = 10;
+  private defaultCurrentPage = 1;
 
 
   @Input() tableSchema: {
+    hideGlobalFilter?: boolean
     pageSize?: number,
     sort?: {
       sortField: string;
@@ -39,36 +43,19 @@ export class EditableTableComponent implements OnInit {
 
   constructor(private changeDetector: ChangeDetectorRef, private filterTable: FilterTablePipe) {}
 
-  randomDate(start: Date, end: Date) {
-    return new Date(
-      start.getTime() + Math.random() * (end.getTime() - start.getTime())
-    );
-  }
-
-  randomizeDates() {
-    this.tableData.map(row => {
-      const temp = row;
-      temp.createdAt = this.randomDate(new Date(2012, 0, 1), new Date());
-      temp.updatedAt = this.randomDate(new Date(2012, 0, 1), new Date());
-      return temp;
-    });
-  }
-
   ngOnInit() {
     if (!this.tableData || !this.tableSchema || !this.tableSchema.columnSchema) {
       return;
     }
-    this.randomizeDates();
     this.setDisplayableColumns();
     if (this.displayableColumns.length === 0) {
       this.errorMessage = 'No displayable column in table';
       this.tableData = null;
       return;
     }
+    this.configureTableVariables();
     this.setDefaultDisplayableColumns();
-
     this.setPaginationVariables();
-
     this.setSortConfig();
     this.isAnyColumnWithFieldFilter();
     this.sortTable();
@@ -78,30 +65,33 @@ export class EditableTableComponent implements OnInit {
     }
   }
 
+  configureTableVariables() {
+    if (this.tableSchema.hideGlobalFilter && this.tableSchema.hideGlobalFilter === true) {
+      this.isGlobalFilterEnabled = false;
+    } else {
+      this.isGlobalFilterEnabled = true;
+    }
+  }
+
   isAnyColumnWithFieldFilter() {
     if (this.tableSchema.columnSchema.find(column => column.filter === true)) {
       this.isFieldFilteringEnabled = true;
     }
   }
 
-  filterTableWithGlobalSearch() {
+  applyFilter() {
     this.setCurrentPageNumber(1);
     this.setTotalPages();
   }
 
   clearGlobalFilterVariable() {
     this.globalFilterInputKeyword = '';
-    this.filterTableWithGlobalSearch();
-  }
-
-  filterTableWithFieldSearch() {
-    this.setCurrentPageNumber(1);
-    this.setTotalPages();
+    this.applyFilter();
   }
 
   clearFieldFilterVariable(columnName) {
     this.fieldFilterInputKeywords[columnName] = '';
-    this.filterTableWithFieldSearch();
+    this.applyFilter();
   }
 
   setFieldFilterVariables() {
@@ -191,16 +181,16 @@ export class EditableTableComponent implements OnInit {
 
   setPaginationVariables() {
     if (!this.tableSchema.pageSize) {
-      this.tableSchema.pageSize = 5;
+      this.tableSchema.pageSize = this.defaultPageSize;
     }
-    this.currentPageNumber = 1;
+    this.currentPageNumber = this.defaultCurrentPage;
     this.setTotalPages();
   }
 
   setCurrentPageNumber(pageNumber) {
     if (pageNumber < 1) {
-      pageNumber = 1;
-    } else if (pageNumber > this.totalPages) {
+      pageNumber = this.defaultCurrentPage;
+    } else if (pageNumber > this.totalPages && this.totalPages !== 0) {
       pageNumber = this.totalPages;
     }
     this.currentPageNumber = pageNumber;

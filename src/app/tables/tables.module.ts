@@ -30,8 +30,7 @@ import { PaginateRowsPipe } from './paginate-rows.pipe';
     BootstrapModule
   ],
   providers: [
-    FilterTablePipe,
-    PaginateRowsPipe
+    FilterTablePipe
   ]
 })
 export class TablesModule { }

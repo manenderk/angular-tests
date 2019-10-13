@@ -1,4 +1,6 @@
 export const TableSchema = {
+  hideGlobalFilter: false,
+  pageSize: 10,
   columnSchema: [
     {
       name: 'name',

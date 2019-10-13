@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'numberToArray'
+  name: 'numberToArray',
+  pure: false
 })
 export class NumberToArrayPipe implements PipeTransform {
   transform(value: number): any {
