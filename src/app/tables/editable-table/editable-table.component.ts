@@ -68,7 +68,6 @@ export class EditableTableComponent implements OnInit {
     this.setDefaultDisplayableColumns();
 
     this.setPaginationVariables();
-    console.log(this.tableSchema.pageSize);
 
     this.setSortConfig();
     this.isAnyColumnWithFieldFilter();
@@ -86,21 +85,23 @@ export class EditableTableComponent implements OnInit {
   }
 
   filterTableWithGlobalSearch() {
+    this.setCurrentPageNumber(1);
     this.setTotalPages();
-    // console.log(this.globalFilterInputKeyword);
   }
 
   clearGlobalFilterVariable() {
     this.globalFilterInputKeyword = '';
+    this.filterTableWithGlobalSearch();
   }
 
   filterTableWithFieldSearch() {
+    this.setCurrentPageNumber(1);
     this.setTotalPages();
-    // console.log(this.fieldFilterInputKeywords);
   }
 
   clearFieldFilterVariable(columnName) {
     this.fieldFilterInputKeywords[columnName] = '';
+    this.filterTableWithFieldSearch();
   }
 
   setFieldFilterVariables() {
@@ -190,20 +191,25 @@ export class EditableTableComponent implements OnInit {
 
   setPaginationVariables() {
     if (!this.tableSchema.pageSize) {
-      this.tableSchema.pageSize = 6;
+      this.tableSchema.pageSize = 5;
     }
     this.currentPageNumber = 1;
-    this.totalPages = Math.ceil(this.tableData.length / this.tableSchema.pageSize);
+    this.setTotalPages();
   }
 
   setCurrentPageNumber(pageNumber) {
+    if (pageNumber < 1) {
+      pageNumber = 1;
+    } else if (pageNumber > this.totalPages) {
+      pageNumber = this.totalPages;
+    }
     this.currentPageNumber = pageNumber;
   }
 
   setTotalPages() {
     const filterObj = {
-      globalFilterKeyword: this.globalFilterInputKeyword,
-      fieldFilterKeywords: this.fieldFilterInputKeywords
+      globalFilterKeyword: this.globalFilterInputKeyword ? this.globalFilterInputKeyword : '',
+      fieldFilterKeywords: this.fieldFilterInputKeywords ? this.fieldFilterInputKeywords : []
     };
     this.totalPages = Math.ceil(
       this.filterTable.transform(

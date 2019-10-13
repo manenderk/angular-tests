@@ -54,8 +54,23 @@
         <li class="page-item" [ngClass]="{'disabled': currentPageNumber === 1}">
           <a class="page-link" tabindex="-1" (click)="setCurrentPageNumber(currentPageNumber - 1)">Prev</a>
         </li>
-        <li *ngFor="let x of totalPages|numberToArray" class="page-item" [ngClass]="{'active': x === currentPageNumber}">
+        <li class="page-item" *ngIf="currentPageNumber >= 5 - 1">
+          <a class="page-link" tabindex="-1" (click)="setCurrentPageNumber(currentPageNumber - 5)">...</a>
+        </li>
+        <li
+          *ngFor="let x of totalPages|numberToArray"
+          class="page-item"
+          [ngClass]="{
+            'active': x === currentPageNumber,
+            'hidden': (currentPageNumber < 5-1 && x > 5) ||
+              ((x < currentPageNumber - 2 || x > currentPageNumber + 2) && (currentPageNumber >= 5-1 && currentPageNumber <= totalPages - 2 )) ||
+              (currentPageNumber >= totalPages - 2 && x <= totalPages - 5)
+          }"
+        >
           <a class="page-link" (click)="setCurrentPageNumber(x)" >{{x}}</a>
+        </li>
+        <li class="page-item" *ngIf="currentPageNumber <= totalPages - 5 + 2">
+          <a class="page-link" tabindex="-1" (click)="setCurrentPageNumber(currentPageNumber + 5)">...</a>
         </li>
         <li class="page-item" [ngClass]="{'disabled': currentPageNumber === totalPages}">
           <a class="page-link" tabindex="-1" (click)="setCurrentPageNumber(currentPageNumber + 1)">Next</a>
