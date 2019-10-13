@@ -14,6 +14,7 @@ export class EditableTableComponent implements OnInit {
   errorMessage = '';
   isGlobalFilterEnabled = false;
   isFieldFilteringEnabled = false;
+  isInlineEditingEnabled = false;
   globalFilterInputKeyword = '';
   fieldFilterInputKeywords: {};
   displayableColumns: any[];
@@ -25,6 +26,7 @@ export class EditableTableComponent implements OnInit {
 
 
   @Input() tableSchema: {
+    rowIdColumnName?: string,
     hideGlobalFilter?: boolean
     pageSize?: number,
     sort?: {
@@ -52,6 +54,9 @@ export class EditableTableComponent implements OnInit {
       this.errorMessage = 'No displayable column in table';
       this.tableData = null;
       return;
+    }
+    if (this.tableSchema.rowIdColumnName && this.tableSchema.rowIdColumnName !== '') {
+      this.isInlineEditingEnabled = true;
     }
     this.configureTableVariables();
     this.setDefaultDisplayableColumns();
@@ -207,5 +212,9 @@ export class EditableTableComponent implements OnInit {
         filterObj
       ).length / this.tableSchema.pageSize
     );
+  }
+
+  updateColumnData(rowId: any, columnName: string, event: any) {
+    console.log(rowId, event.target.textContent);
   }
 }

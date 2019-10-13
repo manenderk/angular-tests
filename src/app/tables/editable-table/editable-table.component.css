@@ -9,3 +9,9 @@ td {
 .hidden {
   display: none;
 }
+
+.data-column span:focus {
+  display: block;
+  width: 100%;
+  padding: 8px;
+}
