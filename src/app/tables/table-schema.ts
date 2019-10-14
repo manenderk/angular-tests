@@ -1,8 +1,14 @@
 export const TableSchema = {
-  rowIdColumnName: 'name',
+  rowIdColumnName: 'id',
   hideGlobalFilter: false,
   pageSize: 10,
   columnSchema: [
+    {
+      name: 'id',
+      label: 'ID',
+      display: true,
+      filter: true
+    },
     {
       name: 'name',
       label: 'Name',

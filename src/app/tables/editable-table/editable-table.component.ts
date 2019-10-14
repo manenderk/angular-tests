@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FilterTablePipe } from '../filter-table.pipe';
+import { Observable, Subscription } from 'rxjs';
 
 const enum SortDirection { 'asc', 'desc' }
 
@@ -9,8 +10,7 @@ const enum SortDirection { 'asc', 'desc' }
   styleUrls: ['./editable-table.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EditableTableComponent implements OnInit {
-
+export class EditableTableComponent implements OnInit, OnDestroy {
   errorMessage = '';
   isGlobalFilterEnabled = false;
   isFieldFilteringEnabled = false;
@@ -23,39 +23,79 @@ export class EditableTableComponent implements OnInit {
   totalPages: number;
   private defaultPageSize = 10;
   private defaultCurrentPage = 1;
-
+  private tableEventSubscription: Subscription;
 
   @Input() tableSchema: {
-    rowIdColumnName?: string,
-    hideGlobalFilter?: boolean
-    pageSize?: number,
+    rowIdColumnName?: string;
+    hideGlobalFilter?: boolean;
+    pageSize?: number;
     sort?: {
       sortField: string;
       sortOrder: SortDirection;
-    },
+    };
     columnSchema: {
-      name: 'string',
-      label: 'string',
-      display?: boolean,
-      filter?: boolean
-    }[]
+      name: 'string';
+      label: 'string';
+      display?: boolean;
+      filter?: boolean;
+    }[];
   };
 
   @Input() tableData: any[];
 
-  constructor(private changeDetector: ChangeDetectorRef, private filterTable: FilterTablePipe) {}
+  @Input() tableEvents: Observable<{eventType: string, tableData: any[]}>;
+
+  @Output() dataUpdated = new EventEmitter<{
+    recordId: string | number;
+    fieldName: string;
+    data: string;
+  }>();
+
+  constructor(
+    private changeDetector: ChangeDetectorRef,
+    private filterTable: FilterTablePipe
+  ) {}
 
   ngOnInit() {
-    if (!this.tableData || !this.tableSchema || !this.tableSchema.columnSchema) {
+    this.initializeTable();
+    if (this.tableEvents) {
+      this.tableEventSubscription = this.tableEvents.subscribe((data) => {
+        this.updateTableData(data.tableData);
+      });
+    }
+  }
+
+  ngOnDestroy() {
+    if (this.tableEventSubscription) {
+      this.tableEventSubscription.unsubscribe();
+    }
+  }
+
+
+  updateTableData(tableData: any) {
+    console.log('IN CHILD COMPONENT');
+    this.tableData = tableData;
+  }
+
+  initializeTable() {
+    if (
+      !this.tableData ||
+      !this.tableSchema ||
+      !this.tableSchema.columnSchema
+    ) {
       return;
     }
+    this.tableData = JSON.parse(JSON.stringify(this.tableData));
     this.setDisplayableColumns();
     if (this.displayableColumns.length === 0) {
       this.errorMessage = 'No displayable column in table';
       this.tableData = null;
       return;
     }
-    if (this.tableSchema.rowIdColumnName && this.tableSchema.rowIdColumnName !== '') {
+    if (
+      this.tableSchema.rowIdColumnName &&
+      this.tableSchema.rowIdColumnName !== ''
+    ) {
       this.isInlineEditingEnabled = true;
     }
     this.configureTableVariables();
@@ -71,7 +111,10 @@ export class EditableTableComponent implements OnInit {
   }
 
   configureTableVariables() {
-    if (this.tableSchema.hideGlobalFilter && this.tableSchema.hideGlobalFilter === true) {
+    if (
+      this.tableSchema.hideGlobalFilter &&
+      this.tableSchema.hideGlobalFilter === true
+    ) {
       this.isGlobalFilterEnabled = false;
     } else {
       this.isGlobalFilterEnabled = true;
@@ -203,18 +246,42 @@ export class EditableTableComponent implements OnInit {
 
   setTotalPages() {
     const filterObj = {
-      globalFilterKeyword: this.globalFilterInputKeyword ? this.globalFilterInputKeyword : '',
-      fieldFilterKeywords: this.fieldFilterInputKeywords ? this.fieldFilterInputKeywords : []
+      globalFilterKeyword: this.globalFilterInputKeyword
+        ? this.globalFilterInputKeyword
+        : '',
+      fieldFilterKeywords: this.fieldFilterInputKeywords
+        ? this.fieldFilterInputKeywords
+        : []
     };
     this.totalPages = Math.ceil(
-      this.filterTable.transform(
-        this.tableData,
-        filterObj
-      ).length / this.tableSchema.pageSize
+      this.filterTable.transform(this.tableData, filterObj).length /
+        this.tableSchema.pageSize
     );
   }
 
   updateColumnData(rowId: any, columnName: string, event: any) {
-    console.log(rowId, event.target.textContent);
+
+    const updatedData = {
+      recordId: rowId,
+      fieldName: columnName,
+      data: event.target.textContent.trim()
+    };
+
+    const updatedRow = this.tableData.find(row => {
+      return row[this.tableSchema.rowIdColumnName] === updatedData.recordId && row[columnName] !== updatedData.data;
+    });
+
+    if (!updatedRow) {
+      console.log('NOTHING IS UPDATED');
+      return;
+    }
+
+    console.log('UPDATED ROW');
+    console.log(updatedRow);
+
+    const oldColumnData = updatedRow[columnName];
+
+    console.log('EMITTING EVENT FROM CHILD COMPONENT');
+    this.dataUpdated.emit(updatedData);
   }
 }
