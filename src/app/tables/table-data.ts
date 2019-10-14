@@ -5,7 +5,7 @@ export const TableData: Array<any> = [
     position: 'Integer Corporation',
     office: 'Croatia',
     ext: `<strong>0839</strong>`,
-    startDate: '2015/08/19',
+    startDate: new Date('2015/08/19'),
     salary: 208.178
   },
   {
@@ -14,7 +14,7 @@ export const TableData: Array<any> = [
     position: 'In PC',
     office: 'Cambodia',
     ext: `<strong>8262</strong>`,
-    startDate: '2014/10/08',
+    startDate: new Date('2014/10/08'),
     salary: 114.367
   },
   {
@@ -23,7 +23,7 @@ export const TableData: Array<any> = [
     position: 'Lorem Inc.',
     office: 'Korea, North',
     ext: '8968',
-    startDate: '2015/07/19',
+    startDate: new Date('2015/07/19'),
     salary: 721.473
   },
   {
@@ -32,7 +32,7 @@ export const TableData: Array<any> = [
     position: 'Dolor Nulla Semper LLC',
     office: 'Suriname',
     ext: '7980',
-    startDate: '2015/04/20',
+    startDate: new Date('2015/04/20'),
     salary: 264.62
   },
   {
@@ -41,7 +41,7 @@ export const TableData: Array<any> = [
     position: 'Sed Limited',
     office: 'Bahrain',
     ext: '0757',
-    startDate: '2015/03/04',
+    startDate: new Date('2015/03/04'),
     salary: 651.35
   },
   {
@@ -50,7 +50,7 @@ export const TableData: Array<any> = [
     position: 'Tincidunt LLC',
     office: 'United Kingdom (Great Britain)',
     ext: '3995',
-    startDate: '2015/06/17',
+    startDate: new Date('2015/06/17'),
     salary: 666.259
   },
   {
@@ -59,7 +59,7 @@ export const TableData: Array<any> = [
     position: 'Sociis Industries',
     office: 'Western Sahara',
     ext: '6697',
-    startDate: '2015/08/13',
+    startDate: new Date('2015/08/13'),
     salary: 541.631
   },
   {
@@ -68,7 +68,7 @@ export const TableData: Array<any> = [
     position: 'Elit Pede Malesuada Inc.',
     office: 'Brazil',
     ext: '5203',
-    startDate: '2014/10/02',
+    startDate: new Date('2014/10/02'),
     salary: 182.294
   },
   {
@@ -77,7 +77,7 @@ export const TableData: Array<any> = [
     position: 'Auctor Velit Aliquam LLP',
     office: 'United Arab Emirates',
     ext: '4204',
-    startDate: '2015/08/01',
+    startDate: new Date('2015/08/01'),
     salary: 218.597
   },
   {
@@ -86,7 +86,7 @@ export const TableData: Array<any> = [
     position: 'Arcu Vestibulum Ante Associates',
     office: 'Jersey',
     ext: '0885',
-    startDate: '2015/01/04',
+    startDate: new Date('2015/01/04'),
     salary: 861.632
   },
   {
@@ -95,7 +95,7 @@ export const TableData: Array<any> = [
     position: 'Gravida Company',
     office: 'New Zealand',
     ext: '3951',
-    startDate: '2015/06/02',
+    startDate: new Date('2015/06/02'),
     salary: 413.568
   },
   {
@@ -104,7 +104,7 @@ export const TableData: Array<any> = [
     position: 'Orci Limited',
     office: 'Madagascar',
     ext: '1416',
-    startDate: '2014/12/04',
+    startDate: new Date('2014/12/04'),
     salary: 121.831
   },
   {
@@ -113,7 +113,7 @@ export const TableData: Array<any> = [
     position: 'Auctor Incorporated',
     office: 'Burundi',
     ext: '4673',
-    startDate: '2015/01/12',
+    startDate: new Date('2015/01/12'),
     salary: 62.243
   },
   {
@@ -122,7 +122,7 @@ export const TableData: Array<any> = [
     position: 'Elit Curabitur Sed Consulting',
     office: 'Comoros',
     ext: '6274',
-    startDate: '2014/09/14',
+    startDate: new Date('2014/09/14'),
     salary: 200.854
   },
   {
@@ -131,7 +131,7 @@ export const TableData: Array<any> = [
     position: 'Donec Vitae Erat PC',
     office: 'Saudi Arabia',
     ext: '0269',
-    startDate: '2015/06/07',
+    startDate: new Date('2015/06/07'),
     salary: 581.193
   },
   {
@@ -140,7 +140,7 @@ export const TableData: Array<any> = [
     position: 'Fermentum Risus Corporation',
     office: 'Papua New Guinea',
     ext: '2010',
-    startDate: '2014/12/03',
+    startDate: new Date('2014/12/03'),
     salary: 418.115
   },
   {
@@ -149,7 +149,7 @@ export const TableData: Array<any> = [
     position: 'Vestibulum Consulting',
     office: 'Saudi Arabia',
     ext: '4839',
-    startDate: '2015/05/29',
+    startDate: new Date('2015/05/29'),
     salary: 466.201
   },
   {
@@ -158,7 +158,7 @@ export const TableData: Array<any> = [
     position: 'Donec Egestas Associates',
     office: 'Poland',
     ext: '0622',
-    startDate: '2015/01/22',
+    startDate: new Date('2015/01/22'),
     salary: 800.011
   },
   {
@@ -167,7 +167,7 @@ export const TableData: Array<any> = [
     position: 'Et Magnis Dis Limited',
     office: 'Belgium',
     ext: '8140',
-    startDate: '2015/05/18',
+    startDate: new Date('2015/05/18'),
     salary: 564.245
   },
   {
@@ -176,7 +176,7 @@ export const TableData: Array<any> = [
     position: 'Est Tempor Bibendum Corp.',
     office: 'Dominican Republic',
     ext: '6774',
-    startDate: '2015/07/23',
+    startDate: new Date('2015/07/23'),
     salary: 357.222
   },
   {
@@ -185,7 +185,7 @@ export const TableData: Array<any> = [
     position: 'Nec Diam LLC',
     office: 'Ghana',
     ext: '9266',
-    startDate: '2015/06/18',
+    startDate: new Date('2015/06/18'),
     salary: 554.375
   },
   {
@@ -194,7 +194,7 @@ export const TableData: Array<any> = [
     position: 'Nullam Suscipit Foundation',
     office: 'Namibia',
     ext: '3133',
-    startDate: '2015/03/20',
+    startDate: new Date('2015/03/20'),
     salary: 90.417
   },
   {
@@ -203,7 +203,7 @@ export const TableData: Array<any> = [
     position: 'Pede Nonummy Inc.',
     office: 'Namibia',
     ext: '3367',
-    startDate: '2015/03/26',
+    startDate: new Date('2015/03/26'),
     salary: 598.915
   },
   {
@@ -212,7 +212,7 @@ export const TableData: Array<any> = [
     position: 'Donec Consulting',
     office: 'Nicaragua',
     ext: '2690',
-    startDate: '2015/08/18',
+    startDate: new Date('2015/08/18'),
     salary: 201.68
   },
   {
@@ -221,7 +221,7 @@ export const TableData: Array<any> = [
     position: 'Enim Consequat Purus Industries',
     office: 'Morocco',
     ext: '0619',
-    startDate: '2015/03/06',
+    startDate: new Date('2015/03/06'),
     salary: 220.187
   },
   {
@@ -230,7 +230,7 @@ export const TableData: Array<any> = [
     position: 'Non Vestibulum PC',
     office: 'Mali',
     ext: '5806',
-    startDate: '2015/04/19',
+    startDate: new Date('2015/04/19'),
     salary: 324.588
   },
   {
@@ -239,7 +239,7 @@ export const TableData: Array<any> = [
     position: 'Tristique Aliquet PC',
     office: 'Lesotho',
     ext: '4469',
-    startDate: '2015/01/19',
+    startDate: new Date('2015/01/19'),
     salary: 351.108
   },
   {
@@ -248,7 +248,7 @@ export const TableData: Array<any> = [
     position: 'Sit Amet Dapibus Industries',
     office: 'Cuba',
     ext: '7860',
-    startDate: '2015/01/06',
+    startDate: new Date('2015/01/06'),
     salary: 230.072
   },
   {
@@ -257,7 +257,7 @@ export const TableData: Array<any> = [
     position: 'Eu Augue Porttitor LLP',
     office: 'Cyprus',
     ext: '4697',
-    startDate: '2014/11/02',
+    startDate: new Date('2014/11/02'),
     salary: 853.413
   },
   {
@@ -266,7 +266,7 @@ export const TableData: Array<any> = [
     position: 'Aenean Gravida Limited',
     office: 'Uruguay',
     ext: '1140',
-    startDate: '2015/05/16',
+    startDate: new Date('2015/05/16'),
     salary: 401.97
   },
   {
@@ -275,7 +275,7 @@ export const TableData: Array<any> = [
     position: 'Aliquet Diam Sed Institute',
     office: 'Samoa',
     ext: '9966',
-    startDate: '2015/05/17',
+    startDate: new Date('2015/05/17'),
     salary: 79.193
   },
   {
@@ -284,7 +284,7 @@ export const TableData: Array<any> = [
     position: 'Sed Associates',
     office: 'Mauritius',
     ext: '4767',
-    startDate: '2015/03/20',
+    startDate: new Date('2015/03/20'),
     salary: 484.299
   },
   {
@@ -293,7 +293,7 @@ export const TableData: Array<any> = [
     position: 'A Dui Incorporated',
     office: 'Norway',
     ext: '5517',
-    startDate: '2015/02/21',
+    startDate: new Date('2015/02/21'),
     salary: 333.518
   },
   {
@@ -302,7 +302,7 @@ export const TableData: Array<any> = [
     position: 'Nulla Facilisis Suspendisse Institute',
     office: 'China',
     ext: '3179',
-    startDate: '2015/05/27',
+    startDate: new Date('2015/05/27'),
     salary: 651.761
   },
   {
@@ -311,7 +311,7 @@ export const TableData: Array<any> = [
     position: 'Eleifend Cras Institute',
     office: 'Ghana',
     ext: '5904',
-    startDate: '2015/04/01',
+    startDate: new Date('2015/04/01'),
     salary: 627.095
   },
   {
@@ -320,7 +320,7 @@ export const TableData: Array<any> = [
     position: 'Ut Sagittis Associates',
     office: 'Isle of Man',
     ext: '9840',
-    startDate: '2015/01/12',
+    startDate: new Date('2015/01/12'),
     salary: 742.247
   },
   {
@@ -329,7 +329,7 @@ export const TableData: Array<any> = [
     position: 'Cras Eu Tellus Associates',
     office: 'Bouvet Island',
     ext: '4580',
-    startDate: '2015/08/12',
+    startDate: new Date('2015/08/12'),
     salary: 591.588
   },
   {
@@ -338,7 +338,7 @@ export const TableData: Array<any> = [
     position: 'Lobortis Institute',
     office: 'Zambia',
     ext: '8725',
-    startDate: '2015/04/04',
+    startDate: new Date('2015/04/04'),
     salary: 791.408
   },
   {
@@ -347,7 +347,7 @@ export const TableData: Array<any> = [
     position: 'Non Industries',
     office: 'Myanmar',
     ext: '3201',
-    startDate: '2015/06/24',
+    startDate: new Date('2015/06/24'),
     salary: 142.906
   },
   {
@@ -356,7 +356,7 @@ export const TableData: Array<any> = [
     position: 'Phasellus Inc.',
     office: 'Mauritania',
     ext: '2033',
-    startDate: '2014/11/21',
+    startDate: new Date('2014/11/21'),
     salary: 226.591
   },
   {
@@ -365,7 +365,7 @@ export const TableData: Array<any> = [
     position: 'Duis PC',
     office: 'Madagascar',
     ext: '4397',
-    startDate: '2015/01/18',
+    startDate: new Date('2015/01/18'),
     salary: 234.196
   },
   {
@@ -374,7 +374,7 @@ export const TableData: Array<any> = [
     position: 'Ullamcorper Duis Cursus Foundation',
     office: 'Brazil',
     ext: '2227',
-    startDate: '2015/02/28',
+    startDate: new Date('2015/02/28'),
     salary: 655.052
   },
   {
@@ -383,7 +383,7 @@ export const TableData: Array<any> = [
     position: 'Mauris Ipsum LLP',
     office: 'Paraguay',
     ext: '7288',
-    startDate: '2015/08/08',
+    startDate: new Date('2015/08/08'),
     salary: 222.946
   },
   {
@@ -392,7 +392,7 @@ export const TableData: Array<any> = [
     position: 'Donec Tempor Institute',
     office: 'Papua New Guinea',
     ext: '5416',
-    startDate: '2015/02/12',
+    startDate: new Date('2015/02/12'),
     salary: 562.194
   },
   {
@@ -401,7 +401,7 @@ export const TableData: Array<any> = [
     position: 'Ipsum Leo Associates',
     office: 'Congo (Brazzaville)',
     ext: '6019',
-    startDate: '2015/01/10',
+    startDate: new Date('2015/01/10'),
     salary: 629.925
   },
   {
@@ -410,7 +410,7 @@ export const TableData: Array<any> = [
     position: 'Nunc Est Incorporated',
     office: 'Australia',
     ext: '6466',
-    startDate: '2015/01/30',
+    startDate: new Date('2015/01/30'),
     salary: 343.476
   },
   {
@@ -419,7 +419,7 @@ export const TableData: Array<any> = [
     position: 'Interdum PC',
     office: 'Turkey',
     ext: '8001',
-    startDate: '2014/10/11',
+    startDate: new Date('2014/10/11'),
     salary: 469.305
   },
   {
@@ -428,7 +428,7 @@ export const TableData: Array<any> = [
     position: 'Amet Limited',
     office: 'Kenya',
     ext: '4799',
-    startDate: '2014/11/22',
+    startDate: new Date('2014/11/22'),
     salary: 56.606
   },
   {
@@ -437,7 +437,7 @@ export const TableData: Array<any> = [
     position: 'Quisque Varius Nam Company',
     office: 'France',
     ext: '3907',
-    startDate: '2015/03/26',
+    startDate: new Date('2015/03/26'),
     salary: 314.26
   },
   {
@@ -446,7 +446,7 @@ export const TableData: Array<any> = [
     position: 'Penatibus PC',
     office: 'Venezuela',
     ext: '5902',
-    startDate: '2015/01/07',
+    startDate: new Date('2015/01/07'),
     salary: 106.335
   },
   {
@@ -455,7 +455,7 @@ export const TableData: Array<any> = [
     position: 'Felis Orci PC',
     office: 'Niue',
     ext: '4189',
-    startDate: '2015/08/25',
+    startDate: new Date('2015/08/25'),
     salary: 515.671
   },
   {
@@ -464,7 +464,7 @@ export const TableData: Array<any> = [
     position: 'Ac Corporation',
     office: 'Macao',
     ext: '4771',
-    startDate: '2015/06/30',
+    startDate: new Date('2015/06/30'),
     salary: 72.295
   },
   {
@@ -473,7 +473,7 @@ export const TableData: Array<any> = [
     position: 'Blandit Congue Limited',
     office: 'Holy See (Vatican City State)',
     ext: '4684',
-    startDate: '2014/12/22',
+    startDate: new Date('2014/12/22'),
     salary: 694.656
   },
   {
@@ -482,7 +482,7 @@ export const TableData: Array<any> = [
     position: 'Vulputate Posuere Industries',
     office: 'Sudan',
     ext: '6482',
-    startDate: '2014/11/22',
+    startDate: new Date('2014/11/22'),
     salary: 363.743
   },
   {
@@ -491,7 +491,7 @@ export const TableData: Array<any> = [
     position: 'Vestibulum Accumsan Neque Company',
     office: 'Jersey',
     ext: '4837',
-    startDate: '2015/07/29',
+    startDate: new Date('2015/07/29'),
     salary: 606.004
   },
   {
@@ -500,7 +500,7 @@ export const TableData: Array<any> = [
     position: 'Ac Foundation',
     office: 'Falkland Islands',
     ext: '5752',
-    startDate: '2015/09/03',
+    startDate: new Date('2015/09/03'),
     salary: 745.5
   },
   {
@@ -509,7 +509,7 @@ export const TableData: Array<any> = [
     position: 'Sociis Natoque Penatibus Foundation',
     office: 'Azerbaijan',
     ext: '8470',
-    startDate: '2015/03/06',
+    startDate: new Date('2015/03/06'),
     salary: 582.265
   },
   {
@@ -518,7 +518,7 @@ export const TableData: Array<any> = [
     position: 'Orci Lacus Vestibulum Foundation',
     office: 'Croatia',
     ext: '6217',
-    startDate: '2014/10/21',
+    startDate: new Date('2014/10/21'),
     salary: 416.958
   },
   {
@@ -527,7 +527,7 @@ export const TableData: Array<any> = [
     position: 'Convallis Ligula Donec Inc.',
     office: 'Benin',
     ext: '6240',
-    startDate: '2015/07/12',
+    startDate: new Date('2015/07/12'),
     salary: 540.999
   },
   {
@@ -536,7 +536,7 @@ export const TableData: Array<any> = [
     position: 'Amet Orci Limited',
     office: 'Falkland Islands',
     ext: '5608',
-    startDate: '2015/01/23',
+    startDate: new Date('2015/01/23'),
     salary: 480.067
   },
   {
@@ -545,7 +545,7 @@ export const TableData: Array<any> = [
     position: 'Ornare Lectus Incorporated',
     office: 'British Indian Ocean Territory',
     ext: '7419',
-    startDate: '2015/05/28',
+    startDate: new Date('2015/05/28'),
     salary: 257.937
   },
   {
@@ -554,7 +554,7 @@ export const TableData: Array<any> = [
     position: 'Nunc Corp.',
     office: 'Mongolia',
     ext: '4326',
-    startDate: '2015/01/06',
+    startDate: new Date('2015/01/06'),
     salary: 359.737
   },
   {
@@ -563,7 +563,7 @@ export const TableData: Array<any> = [
     position: 'Nec Tempus Institute',
     office: 'Somalia',
     ext: '8372',
-    startDate: '2015/03/09',
+    startDate: new Date('2015/03/09'),
     salary: 99.718
   },
   {
@@ -572,7 +572,7 @@ export const TableData: Array<any> = [
     position: 'Nec LLP',
     office: 'Iran',
     ext: '0049',
-    startDate: '2015/08/24',
+    startDate: new Date('2015/08/24'),
     salary: 480.718
   },
   {
@@ -581,7 +581,7 @@ export const TableData: Array<any> = [
     position: 'Eu Elit Nulla Corporation',
     office: 'Italy',
     ext: '7586',
-    startDate: '2015/06/19',
+    startDate: new Date('2015/06/19'),
     salary: 253.772
   },
   {
@@ -590,7 +590,7 @@ export const TableData: Array<any> = [
     position: 'Sed Institute',
     office: 'Uganda',
     ext: '7183',
-    startDate: '2015/06/16',
+    startDate: new Date('2015/06/16'),
     salary: 388.879
   },
   {
@@ -599,7 +599,7 @@ export const TableData: Array<any> = [
     position: 'Vivamus Nibh Dolor Incorporated',
     office: 'Puerto Rico',
     ext: '3354',
-    startDate: '2014/11/12',
+    startDate: new Date('2014/11/12'),
     salary: 747.31
   },
   {
@@ -608,7 +608,7 @@ export const TableData: Array<any> = [
     position: 'Justo Inc.',
     office: 'Fiji',
     ext: '2185',
-    startDate: '2014/09/24',
+    startDate: new Date('2014/09/24'),
     salary: 803.037
   },
   {
@@ -617,7 +617,7 @@ export const TableData: Array<any> = [
     position: 'Diam Associates',
     office: 'Sao Tome and Principe',
     ext: '7760',
-    startDate: '2014/12/21',
+    startDate: new Date('2014/12/21'),
     salary: 674.379
   },
   {
@@ -626,7 +626,7 @@ export const TableData: Array<any> = [
     position: 'Laoreet Institute',
     office: 'Grenada',
     ext: '8920',
-    startDate: '2015/06/03',
+    startDate: new Date('2015/06/03'),
     salary: 625.147
   },
   {
@@ -635,7 +635,7 @@ export const TableData: Array<any> = [
     position: 'Eu Arcu LLP',
     office: 'Cyprus',
     ext: '2369',
-    startDate: '2015/01/18',
+    startDate: new Date('2015/01/18'),
     salary: 208.1
   },
   {
@@ -644,7 +644,7 @@ export const TableData: Array<any> = [
     position: 'Ligula Donec Inc.',
     office: 'Viet Nam',
     ext: '8531',
-    startDate: '2015/04/09',
+    startDate: new Date('2015/04/09'),
     salary: 104.063
   },
   {
@@ -653,7 +653,7 @@ export const TableData: Array<any> = [
     position: 'Sem Molestie Associates',
     office: 'Philippines',
     ext: '8888',
-    startDate: '2015/07/04',
+    startDate: new Date('2015/07/04'),
     salary: 673.556
   },
   {
@@ -662,7 +662,7 @@ export const TableData: Array<any> = [
     position: 'Fusce Industries',
     office: 'Togo',
     ext: '5051',
-    startDate: '2015/08/15',
+    startDate: new Date('2015/08/15'),
     salary: 737.284
   },
   {
@@ -671,7 +671,7 @@ export const TableData: Array<any> = [
     position: 'Non Corp.',
     office: 'Equatorial Guinea',
     ext: '4834',
-    startDate: '2015/08/24',
+    startDate: new Date('2015/08/24'),
     salary: 90.195
   },
   {
@@ -680,7 +680,7 @@ export const TableData: Array<any> = [
     position: 'Non Dui Consulting',
     office: 'Belize',
     ext: '7501',
-    startDate: '2014/10/28',
+    startDate: new Date('2014/10/28'),
     salary: 140.767
   },
   {
@@ -689,7 +689,7 @@ export const TableData: Array<any> = [
     position: 'Ullamcorper Velit In Industries',
     office: 'Vanuatu',
     ext: '0976',
-    startDate: '2015/03/16',
+    startDate: new Date('2015/03/16'),
     salary: 70.536
   },
   {
@@ -698,7 +698,7 @@ export const TableData: Array<any> = [
     position: 'Malesuada Consulting',
     office: 'French Southern Territories',
     ext: '0211',
-    startDate: '2015/01/28',
+    startDate: new Date('2015/01/28'),
     salary: 75.501
   },
   {
@@ -707,7 +707,7 @@ export const TableData: Array<any> = [
     position: 'Lorem Industries',
     office: 'Cocos (Keeling) Islands',
     ext: '2980',
-    startDate: '2014/12/11',
+    startDate: new Date('2014/12/11'),
     salary: 754.967
   },
   {
@@ -716,7 +716,7 @@ export const TableData: Array<any> = [
     position: 'Pede Foundation',
     office: 'Kazakhstan',
     ext: '1446',
-    startDate: '2015/07/02',
+    startDate: new Date('2015/07/02'),
     salary: 842.05
   },
   {
@@ -725,7 +725,7 @@ export const TableData: Array<any> = [
     position: 'Curabitur Limited',
     office: 'Timor-Leste',
     ext: '4654',
-    startDate: '2015/05/07',
+    startDate: new Date('2015/05/07'),
     salary: 263.629
   },
   {
@@ -734,7 +734,7 @@ export const TableData: Array<any> = [
     position: 'Ut Limited',
     office: 'Mayotte',
     ext: '4668',
-    startDate: '2015/01/17',
+    startDate: new Date('2015/01/17'),
     salary: 74.292
   },
   {
@@ -743,7 +743,7 @@ export const TableData: Array<any> = [
     position: 'Sapien Aenean Associates',
     office: 'Brazil',
     ext: '6623',
-    startDate: '2014/12/28',
+    startDate: new Date('2014/12/28'),
     salary: 108.632
   },
   {
@@ -752,7 +752,7 @@ export const TableData: Array<any> = [
     position: 'Ipsum PC',
     office: 'Portugal',
     ext: '3978',
-    startDate: '2015/07/11',
+    startDate: new Date('2015/07/11'),
     salary: 34.244
   },
   {
@@ -761,7 +761,7 @@ export const TableData: Array<any> = [
     position: 'Eget LLP',
     office: 'Nicaragua',
     ext: '8890',
-    startDate: '2014/09/30',
+    startDate: new Date('2014/09/30'),
     salary: 690.834
   },
   {
@@ -770,7 +770,7 @@ export const TableData: Array<any> = [
     position: 'Imperdiet Ullamcorper Ltd',
     office: 'Cocos (Keeling) Islands',
     ext: '9489',
-    startDate: '2014/12/01',
+    startDate: new Date('2014/12/01'),
     salary: 603.498
   },
   {
@@ -779,7 +779,7 @@ export const TableData: Array<any> = [
     position: 'Id Institute',
     office: 'Cook Islands',
     ext: '5592',
-    startDate: '2015/02/04',
+    startDate: new Date('2015/02/04'),
     salary: 125.165
   },
   {
@@ -788,7 +788,7 @@ export const TableData: Array<any> = [
     position: 'Eget LLC',
     office: 'Belize',
     ext: '3110',
-    startDate: '2015/01/31',
+    startDate: new Date('2015/01/31'),
     salary: 268.509
   },
   {
@@ -797,7 +797,7 @@ export const TableData: Array<any> = [
     position: 'Enim Incorporated',
     office: 'Guinea',
     ext: '1211',
-    startDate: '2014/09/23',
+    startDate: new Date('2014/09/23'),
     salary: 214.381
   },
   {
@@ -806,7 +806,7 @@ export const TableData: Array<any> = [
     position: 'Feugiat Placerat Corp.',
     office: 'Sao Tome and Principe',
     ext: '8176',
-    startDate: '2015/06/17',
+    startDate: new Date('2015/06/17'),
     salary: 137.423
   },
   {
@@ -815,7 +815,7 @@ export const TableData: Array<any> = [
     position: 'Lacus Quisque Ltd',
     office: 'Ecuador',
     ext: '6741',
-    startDate: '2014/10/17',
+    startDate: new Date('2014/10/17'),
     salary: 612.184
   },
   {
@@ -824,7 +824,7 @@ export const TableData: Array<any> = [
     position: 'Malesuada Fringilla Est Associates',
     office: 'Algeria',
     ext: '5054',
-    startDate: '2014/10/18',
+    startDate: new Date('2014/10/18'),
     salary: 327.367
   },
   {
@@ -833,7 +833,7 @@ export const TableData: Array<any> = [
     position: 'Mus Proin LLC',
     office: 'South Sudan',
     ext: '1550',
-    startDate: '2015/05/27',
+    startDate: new Date('2015/05/27'),
     salary: 743.493
   },
   {
@@ -842,7 +842,7 @@ export const TableData: Array<any> = [
     position: 'Phasellus Corp.',
     office: 'South Georgia and The South Sandwich Islands',
     ext: '7582',
-    startDate: '2015/05/21',
+    startDate: new Date('2015/05/21'),
     salary: 496.067
   },
   {
@@ -851,7 +851,7 @@ export const TableData: Array<any> = [
     position: 'Neque Institute',
     office: 'Saint Vincent and The Grenadines',
     ext: '9368',
-    startDate: '2015/03/13',
+    startDate: new Date('2015/03/13'),
     salary: 178.782
   },
   {
@@ -860,7 +860,7 @@ export const TableData: Array<any> = [
     position: 'Mi Tempor Limited',
     office: 'Dominica',
     ext: '8331',
-    startDate: '2014/12/05',
+    startDate: new Date('2014/12/05'),
     salary: 37.441
   },
   {
@@ -869,7 +869,7 @@ export const TableData: Array<any> = [
     position: 'Ultrices Institute',
     office: 'Turkmenistan',
     ext: '0746',
-    startDate: '2014/11/13',
+    startDate: new Date('2014/11/13'),
     salary: 152.98
   },
   {
@@ -878,7 +878,7 @@ export const TableData: Array<any> = [
     position: 'Dapibus Corporation',
     office: 'Uzbekistan',
     ext: '1545',
-    startDate: '2015/03/06',
+    startDate: new Date('2015/03/06'),
     salary: 409.463
   },
   {
@@ -887,7 +887,7 @@ export const TableData: Array<any> = [
     position: 'Nec Diam Industries',
     office: 'Cook Islands',
     ext: '4395',
-    startDate: '2015/05/22',
+    startDate: new Date('2015/05/22'),
     salary: 51.155
   },
   {
@@ -896,7 +896,7 @@ export const TableData: Array<any> = [
     position: 'Sem Pellentesque LLC',
     office: 'Andorra',
     ext: '2973',
-    startDate: '2014/12/01',
+    startDate: new Date('2014/12/01'),
     salary: 223.227
   }
 ];

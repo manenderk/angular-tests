@@ -23,12 +23,18 @@ export class EditableTableComponent implements OnInit, OnDestroy {
   totalPages: number;
   private defaultPageSize = 10;
   private defaultCurrentPage = 1;
+  private defaultDateFormat = 'dd/mm/YYYY';
+  private defaultDateTimeFormat = 'dd/MM/YYYY hh:mm:ss';
+  private defaultTimeFormat = 'hh:mm:ss';
   private tableEventSubscription: Subscription;
 
   @Input() tableSchema: {
     rowIdColumnName?: string;
     hideGlobalFilter?: boolean;
     pageSize?: number;
+    dateFormat?: string;
+    dateTimeFormat?: string;
+    timeFormat?: string;
     sort?: {
       sortField: string;
       sortOrder: SortDirection;
@@ -38,6 +44,7 @@ export class EditableTableComponent implements OnInit, OnDestroy {
       label: 'string';
       display?: boolean;
       filter?: boolean;
+      dataType: string;
     }[];
   };
 
@@ -78,39 +85,63 @@ export class EditableTableComponent implements OnInit, OnDestroy {
   }
 
   initializeTable() {
+
+    // CHECK IF TABLE DATA AND TABLE SCHEMA AND COLUMN SCHEMA ARE PRESENT. IF ONE OF THESE IS NOT PRESENT THEN SHOW ERROR
     if (
       !this.tableData ||
       !this.tableSchema ||
       !this.tableSchema.columnSchema
     ) {
+      this.errorMessage = 'Insufficient data provided';
+      this.tableData = null;
       return;
     }
-    this.tableData = JSON.parse(JSON.stringify(this.tableData));
+
+    // GET LIST OF DISPLAYABLE COLUMNS WHICH SHOULD BE DISPLAYED BY DEFAULT
     this.setDisplayableColumns();
+
+    // CHECK IF THERE IS NO DISPLAYABLE COLUMN
     if (this.displayableColumns.length === 0) {
       this.errorMessage = 'No displayable column in table';
       this.tableData = null;
       return;
     }
+
+    // ALLOW INLINE EDITING FEATURE ONLY IF ROW ID COLUMN NAME VARIABLE IS PROVIDED IN THE TABLE SCHEMA
     if (
       this.tableSchema.rowIdColumnName &&
       this.tableSchema.rowIdColumnName !== ''
     ) {
       this.isInlineEditingEnabled = true;
     }
+
+    // CONFIGURE TABLE VARIABLES - SET DEFAULT IF SOME VARIABLE IS MISSING
     this.configureTableVariables();
+
+    // SET DEFAULT COLUMNS TO BE DISPLAYED IN THE LIST
     this.setDefaultDisplayableColumns();
+
+    // INITIALIZE PAGINATION FOR THE TABLE
     this.setPaginationVariables();
+
+    // INITIALIZE SORTING FOR THE TABLE
     this.setSortConfig();
-    this.isAnyColumnWithFieldFilter();
     this.sortTable();
+
+    // CHECK IF THERE IS ANY COLUMN WHICH NEEDS FEILD LEVEL FILTERING
+    this.isAnyColumnWithFieldFilter();
+
+    // ALLOW FIELD LEVEL FILTERING IF THERE IS SOME COLUMN WHICH NEEDS TO BE FILTERED
     if (this.isFieldFilteringEnabled) {
       this.fieldFilterInputKeywords = {};
       this.setFieldFilterVariables();
     }
   }
 
+
   configureTableVariables() {
+    this.tableData = JSON.parse(JSON.stringify(this.tableData));
+
     if (
       this.tableSchema.hideGlobalFilter &&
       this.tableSchema.hideGlobalFilter === true
@@ -119,6 +150,19 @@ export class EditableTableComponent implements OnInit, OnDestroy {
     } else {
       this.isGlobalFilterEnabled = true;
     }
+
+
+    if (!this.tableSchema.dateFormat || this.tableSchema.dateFormat === '') {
+      this.tableSchema.dateFormat = this.defaultDateFormat;
+    }
+    if (!this.tableSchema.dateTimeFormat || this.tableSchema.dateTimeFormat === '') {
+      this.tableSchema.dateTimeFormat = this.defaultDateTimeFormat;
+    }
+    if (!this.tableSchema.timeFormat || this.tableSchema.timeFormat === '') {
+      this.tableSchema.timeFormat = this.defaultTimeFormat;
+    }
+    console.log(this.tableSchema);
+
   }
 
   isAnyColumnWithFieldFilter() {
