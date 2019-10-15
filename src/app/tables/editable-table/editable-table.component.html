@@ -42,14 +42,14 @@
       fieldFilterInputKeywords}  | paginateRows:{currentPageNumber: currentPageNumber, pageSize: tableSchema.pageSize}">
         <td *ngFor="let column of displayableColumns" class="data-column">
 
+          <app-editable-cell [data]="row[column.name]" [dataType]="getDataType(column.name)"></app-editable-cell>
 
-
-          <span *ngIf="row[column.name]"
+          <!-- <span *ngIf="row[column.name]"
             [contentEditable]="isInlineEditingEnabled"
             (blur)="updateColumnData(row[tableSchema.recordIdColumnName], column.name, $event)"
           >
             {{row[column.name]}}
-          </span>
+          </span> -->
         </td>
       </tr>
     </table>

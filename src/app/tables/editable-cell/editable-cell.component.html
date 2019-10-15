@@ -1,0 +1,14 @@
+<ng-container *ngIf="data && dataType;else showErrorMessage">
+  <span *ngIf="dataType === 'number'">
+    {{data}}
+  </span>
+  <span *ngIf="dataType === 'string'">
+    {{data}}
+  </span>
+  <span *ngIf="dataType === 'date'">
+    {{data | date}}
+  </span>
+</ng-container>
+<ng-template #showErrorMessage>
+  {{errorMessage}}
+</ng-template>

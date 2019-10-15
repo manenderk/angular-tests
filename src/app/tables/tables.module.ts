@@ -8,8 +8,8 @@ import { TableContainerComponent } from './table-container/table-container.compo
 import { EditableTableComponent } from './editable-table/editable-table.component';
 import { FilterTablePipe } from './filter-table.pipe';
 import { NumberToArrayPipe } from './number-to-array.pipe';
-import { EditableTable2Component } from './editable-table2/editable-table2.component';
 import { PaginateRowsPipe } from './paginate-rows.pipe';
+import { EditableCellComponent } from './editable-cell/editable-cell.component';
 
 
 
@@ -20,8 +20,8 @@ import { PaginateRowsPipe } from './paginate-rows.pipe';
     EditableTableComponent,
     FilterTablePipe,
     NumberToArrayPipe,
-    EditableTable2Component,
-    PaginateRowsPipe
+    PaginateRowsPipe,
+    EditableCellComponent
   ],
   imports: [
     CommonModule,

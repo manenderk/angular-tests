@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditableTable2Component } from './editable-table2.component';
+import { EditableCellComponent } from './editable-cell.component';
 
-describe('EditableTable2Component', () => {
-  let component: EditableTable2Component;
-  let fixture: ComponentFixture<EditableTable2Component>;
+describe('EditableCellComponent', () => {
+  let component: EditableCellComponent;
+  let fixture: ComponentFixture<EditableCellComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditableTable2Component ]
+      declarations: [ EditableCellComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditableTable2Component);
+    fixture = TestBed.createComponent(EditableCellComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -165,6 +165,10 @@ export class EditableTableComponent implements OnInit, OnDestroy {
     }
   }
 
+  setDataTypes() {
+
+  }
+
   isAnyColumnWithFieldFilter() {
     if (this.tableSchema.columnSchema.find(column => column.filter === true)) {
       this.isFieldFilteringEnabled = true;
@@ -330,5 +334,14 @@ export class EditableTableComponent implements OnInit, OnDestroy {
 
     console.log('EMITTING EVENT FROM CHILD COMPONENT');
     this.dataUpdated.emit(updatedData);
+  }
+
+  getDataType(columnName) {
+    const column = this.tableSchema.columnSchema.find(col => col.name === columnName);
+    if (column) {
+      return column.dataType;
+    } else {
+      return false;
+    }
   }
 }
