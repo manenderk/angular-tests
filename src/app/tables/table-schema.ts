@@ -1,5 +1,5 @@
 export const TableSchema = {
-  rowIdColumnName: 'id',
+  recordIdColumnName: 'id',
   hideGlobalFilter: false,
   pageSize: 10,
   dateFormat: 'dd/mm/YYYY',

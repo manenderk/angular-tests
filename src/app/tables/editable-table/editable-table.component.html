@@ -41,9 +41,12 @@
       <tr *ngFor="let row of tableData | filterTable: {globalFilterKeyword: globalFilterInputKeyword, fieldFilterKeywords:
       fieldFilterInputKeywords}  | paginateRows:{currentPageNumber: currentPageNumber, pageSize: tableSchema.pageSize}">
         <td *ngFor="let column of displayableColumns" class="data-column">
+
+
+
           <span *ngIf="row[column.name]"
             [contentEditable]="isInlineEditingEnabled"
-            (blur)="updateColumnData(row[tableSchema.rowIdColumnName], column.name, $event)"
+            (blur)="updateColumnData(row[tableSchema.recordIdColumnName], column.name, $event)"
           >
             {{row[column.name]}}
           </span>

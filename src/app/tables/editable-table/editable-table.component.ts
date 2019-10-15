@@ -29,7 +29,7 @@ export class EditableTableComponent implements OnInit, OnDestroy {
   private tableEventSubscription: Subscription;
 
   @Input() tableSchema: {
-    rowIdColumnName?: string;
+    recordIdColumnName?: string;
     hideGlobalFilter?: boolean;
     pageSize?: number;
     dateFormat?: string;
@@ -81,7 +81,7 @@ export class EditableTableComponent implements OnInit, OnDestroy {
 
   updateTableData(tableData: any) {
     console.log('IN CHILD COMPONENT');
-    this.tableData = tableData;
+    this.tableData = JSON.parse(JSON.stringify(tableData));
   }
 
   initializeTable() {
@@ -97,6 +97,8 @@ export class EditableTableComponent implements OnInit, OnDestroy {
       return;
     }
 
+    this.tableData = JSON.parse(JSON.stringify(this.tableData));
+
     // GET LIST OF DISPLAYABLE COLUMNS WHICH SHOULD BE DISPLAYED BY DEFAULT
     this.setDisplayableColumns();
 
@@ -109,8 +111,8 @@ export class EditableTableComponent implements OnInit, OnDestroy {
 
     // ALLOW INLINE EDITING FEATURE ONLY IF ROW ID COLUMN NAME VARIABLE IS PROVIDED IN THE TABLE SCHEMA
     if (
-      this.tableSchema.rowIdColumnName &&
-      this.tableSchema.rowIdColumnName !== ''
+      this.tableSchema.recordIdColumnName &&
+      this.tableSchema.recordIdColumnName !== ''
     ) {
       this.isInlineEditingEnabled = true;
     }
@@ -161,8 +163,6 @@ export class EditableTableComponent implements OnInit, OnDestroy {
     if (!this.tableSchema.timeFormat || this.tableSchema.timeFormat === '') {
       this.tableSchema.timeFormat = this.defaultTimeFormat;
     }
-    console.log(this.tableSchema);
-
   }
 
   isAnyColumnWithFieldFilter() {
@@ -312,7 +312,10 @@ export class EditableTableComponent implements OnInit, OnDestroy {
     };
 
     const updatedRow = this.tableData.find(row => {
-      return row[this.tableSchema.rowIdColumnName] === updatedData.recordId && row[columnName] !== updatedData.data;
+        return (
+          row[this.tableSchema.recordIdColumnName] === updatedData.recordId &&
+          row[columnName] !== updatedData.data
+        );
     });
 
     if (!updatedRow) {
