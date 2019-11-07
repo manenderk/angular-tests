@@ -1,0 +1,13 @@
+<nav>
+  <ul class="pagination">
+    <li class="page-item" [ngClass]="{disabled: currentPage === 1}">
+      <a class="page-link" (click)="changeCurrentPage(currentPage - 1)">Previous</a>
+    </li>
+    <li class="page-item" *ngFor="let item of paginationList" [ngClass]="{active: item === currentPage}">
+      <a class="page-link" (click)="changeCurrentPage(item)">{{item}}</a>
+    </li>
+    <li class="page-item" [ngClass]="{disabled: currentPage === paginationList.length}">
+      <a class="page-link" (click)="changeCurrentPage(currentPage + 1)">Next</a>
+    </li>
+  </ul>
+</nav>

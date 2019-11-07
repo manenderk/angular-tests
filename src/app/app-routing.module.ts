@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ChartComponent } from './charts/chart/chart.component';
 import { TableComponent } from './tables/table/table.component';
 import { TableContainerComponent } from './tables/table-container/table-container.component';
+import { SimpleTableComponent } from './tables/simple-table/simple-table.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,10 @@ const routes: Routes = [
   {
     path: 'tables',
     component: TableContainerComponent
+  },
+  {
+    path: 'simple-table',
+    component: SimpleTableComponent
   }
 ];
 

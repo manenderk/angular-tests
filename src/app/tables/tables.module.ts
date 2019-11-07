@@ -10,6 +10,9 @@ import { FilterTablePipe } from './filter-table.pipe';
 import { NumberToArrayPipe } from './number-to-array.pipe';
 import { PaginateRowsPipe } from './paginate-rows.pipe';
 import { EditableCellComponent } from './editable-cell/editable-cell.component';
+import { SimpleTableComponent } from './simple-table/simple-table.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { WordpressService } from './wordpress.service';
 
 
 
@@ -21,7 +24,9 @@ import { EditableCellComponent } from './editable-cell/editable-cell.component';
     FilterTablePipe,
     NumberToArrayPipe,
     PaginateRowsPipe,
-    EditableCellComponent
+    EditableCellComponent,
+    SimpleTableComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +35,8 @@ import { EditableCellComponent } from './editable-cell/editable-cell.component';
     BootstrapModule
   ],
   providers: [
-    FilterTablePipe
+    FilterTablePipe,
+    WordpressService
   ]
 })
 export class TablesModule { }

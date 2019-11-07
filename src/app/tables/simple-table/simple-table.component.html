@@ -1,0 +1,28 @@
+<table *ngIf="tableData" class="table table-bordered">
+  <tr>
+    <th *ngFor="let schema of tableSchema">
+      {{schema.label}}
+    </th>
+  </tr>
+  <tr *ngFor="let data of tableData">
+    <td *ngFor="let schema of tableSchema" [ngSwitch]="schema.dataType">
+      <ng-container *ngSwitchCase="'string'">
+        {{data[schema.name]}}
+      </ng-container>
+      <ng-container *ngSwitchCase="'link'">
+        <a [href]="data[schema.name]">{{data[schema.name]}}</a>
+      </ng-container>
+      <ng-container *ngSwitchCase="'date'">
+        {{data[schema.name] | date}}
+      </ng-container>
+      <ng-container *ngSwitchCase="'html'">
+        <span [innerHTML]="data[schema.name]"></span>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        {{data[schema.name]}}
+      </ng-container>
+
+    </td>
+  </tr>
+</table>
+<app-pagination [paginationData]="pagination" (currentPageChanged)="currentPageChanged($event)"></app-pagination>
