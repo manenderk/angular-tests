@@ -9,6 +9,7 @@ import { LayoutsModule } from './layouts/layouts.module';
 import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SampleModulesModule } from './sample-modules/sample-modules.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     TablesModule,
     LayoutsModule,
     BootstrapModule,
-    SharedModule
+    SharedModule,
+    SampleModulesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
