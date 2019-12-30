@@ -1,0 +1,8 @@
+<form [formGroup]="documentForm">
+  <input type="file" formControlName="document" (change)="previewDocument()">
+</form>
+<div id="preview-pane">
+  <iframe
+    src="/home/manender/Downloads/M9-LocationAdnin-CutPlan-ProcessFlowPic_1.pdf"
+    frameborder='0'></iframe>
+</div>

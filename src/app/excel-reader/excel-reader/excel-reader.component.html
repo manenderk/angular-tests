@@ -1,0 +1,9 @@
+<p>excel-reader works!</p>
+<input type="file" (change)="readExcel($event)">
+<table>
+  <tr *ngFor="let row of importedData">
+    <td *ngFor="let col of row">
+      {{col}}
+    </td>
+  </tr>
+</table>

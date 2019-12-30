@@ -10,6 +10,8 @@ import { BootstrapModule } from './bootstrap/bootstrap.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SampleModulesModule } from './sample-modules/sample-modules.module';
+import { DocumentViewerModule } from './document-viewer/document-viewer.module';
+import { ExcelReaderModule } from './excel-reader/excel-reader.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { SampleModulesModule } from './sample-modules/sample-modules.module';
     LayoutsModule,
     BootstrapModule,
     SharedModule,
-    SampleModulesModule
+    SampleModulesModule,
+    DocumentViewerModule,
+    ExcelReaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
